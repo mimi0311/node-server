@@ -1,4 +1,4 @@
-
+require('colors');
 
 const listaTareas = [
     {
@@ -29,36 +29,48 @@ const listaTareas = [
 ];
 
 const crearTarea = (description) => {
-    const tarea = {
-        id: listaTareas.length + 1,
-        description,
-        complete: false,
-    }
 
-    return listaTareas.push(tarea);
+    return new Promise((resolve, reject) => {
+        const tarea = {
+            id: listaTareas.length + 1,
+            description,
+            complete: false,
+        }
+    
+        listaTareas.push(tarea);
+        resolve(tarea);
+    })
 }
 
 const eliminarTarea = (id) => {
 
-    const index = parseInt(id) - 1;
-
-    if(index > 0 && index <= listaTareas.length)
-        return listaTareas.splice(index , 1)
-    
-    return listaTareas;
+    return new Promise((resolve, reject) => {
+        const index = parseInt(id);
+        if(index >= 1 && index <= listaTareas.length){
+            const tareaEliminada = listaTareas.splice(index - 1, 1)[0];
+            resolve(tareaEliminada);
+        }else{
+            reject(new Error('No existe la tarea'))
+        }
+    })
 }
 
 const completarTarea = (id) => {
-    const index = parseInt(id) - 1;
-    if(index > 0 && index <= listaTareas.length)
-        return listaTareas[index].complete = true;
-    
-    return listaTareas;
+    return new Promise((resolve, reject) => {
+        const index = parseInt(id);
+        if(index >= 1 && index <= listaTareas.length){
+            const tareaCompleta = listaTareas[index-1].complete = true
+            resolve(tareaCompleta);
+        }else{
+            reject(new Error('No existe la tarea'))
+        }
+
+    })
 }
 
 const mostrarTareas = () => {
     listaTareas.forEach(tarea => {
-        console.log(`ID: ${tarea.id}, Descripcion: ${tarea.description}, Completada: ${tarea.complete}`);
+        console.log(`${'ID:'.cyan} ${tarea.id}, ${'Descripcion:'.cyan} ${tarea.description}, ${'Completada:'.cyan} ${tarea.complete}`);
       });
 }
 
