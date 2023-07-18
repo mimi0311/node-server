@@ -19,7 +19,7 @@ const menu = () => {
         console.clear()
           rl.question('Añade la tarea que desea realizar: ', async description => {
             try {
-              crearTarea(description);
+              await crearTarea(description);
               console.log('\n Tarea creada existosamente!'.green)
               
             } catch (error) {
@@ -40,7 +40,7 @@ const menu = () => {
           mostrarTareas();
           rl.question('¿Qué tarea desea marcar como completa? ', async complete => {
             try {
-              completarTarea(complete)
+              await completarTarea(complete)
               console.log('\n Tarea completada existosamente'.green)
               
             } catch (error) {
@@ -55,7 +55,7 @@ const menu = () => {
           mostrarTareas();
           rl.question('¿Qué tarea desea eliminar? ', async eliminar => {
             try {
-              eliminarTarea(eliminar)
+              await eliminarTarea(eliminar)
               console.log('\n Tarea eliminada existosamente'.green)
               
             } catch (error) {
