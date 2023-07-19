@@ -9,3 +9,5 @@ Las funcionalidades más importantes son:
 **- Marcar tareas como completadas:** Los usuarios pueden seleccionar una tarea específica y marcarla como completada para indicar que han terminado de realizarla.
 
 **- Eliminar tareas:** Proporciona a los usuarios una opción para eliminar tareas que así lo requieran, lo que les ayuda a mantener su lista organizada y libre de tareas innecesarias.
+
+**- Mostrar tareas:** Permite a los usuarios ver todas las tareas que tienen hasta el momento (completas o no).
