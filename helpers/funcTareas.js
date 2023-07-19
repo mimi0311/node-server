@@ -47,8 +47,7 @@ const eliminarTarea = (id) => {
     return new Promise((resolve, reject) => {
         const index = parseInt(id);
         if(index >= 1 && index <= listaTareas.length){
-            const tareaEliminada = listaTareas.splice(index - 1, 1)[0];
-            resolve(tareaEliminada);
+            resolve(listaTareas.splice(index - 1, 1)[0]);
         }else{
             reject(new Error('No existe la tarea'))
         }
@@ -59,8 +58,7 @@ const completarTarea = (id) => {
     return new Promise((resolve, reject) => {
         const index = parseInt(id);
         if(index >= 1 && index <= listaTareas.length){
-            const tareaCompleta = listaTareas[index-1].complete = true
-            resolve(tareaCompleta);
+            resolve(listaTareas[index-1].complete = true);
         }else{
             reject(new Error('No existe la tarea'))
         }
@@ -78,5 +76,6 @@ module.exports = {
     crearTarea,
     eliminarTarea,
     completarTarea,
-    mostrarTareas
+    mostrarTareas,
+    listaTareas
 }

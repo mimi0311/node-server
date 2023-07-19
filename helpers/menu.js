@@ -1,7 +1,8 @@
 require('colors')
 const readline = require('readline');
 const { crearTarea, eliminarTarea, completarTarea, mostrarTareas } = require('./funcTareas');
-const { threadId } = require('worker_threads');
+const server = require('../src/server');
+
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -17,7 +18,7 @@ const menu = () => {
     switch(nro.toString()){
       case '1':
         console.clear()
-          rl.question('Añade la tarea que desea realizar: ', async description => {
+          rl.question('\n Añade la tarea que desea realizar: ', async description => {
             try {
               await crearTarea(description);
               console.log('\n Tarea creada existosamente!'.green)
@@ -38,7 +39,7 @@ const menu = () => {
       case '3':
           console.clear()
           mostrarTareas();
-          rl.question('¿Qué tarea desea marcar como completa? ', async complete => {
+          rl.question('\n ¿Qué tarea desea marcar como completa? ', async complete => {
             try {
               await completarTarea(complete)
               console.log('\n Tarea completada existosamente'.green)
@@ -53,7 +54,7 @@ const menu = () => {
       case '4':
           console.clear()
           mostrarTareas();
-          rl.question('¿Qué tarea desea eliminar? ', async eliminar => {
+          rl.question('\n ¿Qué tarea desea eliminar? ', async eliminar => {
             try {
               await eliminarTarea(eliminar)
               console.log('\n Tarea eliminada existosamente'.green)
@@ -67,6 +68,9 @@ const menu = () => {
       
       case '5':
           rl.close();
+          server.close(() => {
+            console.log('\n Servidor detenido.'.red);
+          });
           break;
 
       default:

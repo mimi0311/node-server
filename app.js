@@ -1,3 +1,6 @@
 const { menu } = require('./helpers/menu');
-console.clear()
+const server = require('./src/server');
+
+console.clear();
+
 menu()
